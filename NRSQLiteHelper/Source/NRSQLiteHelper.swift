@@ -17,12 +17,6 @@ class NRSQLiteHelper {
     //Serialsation
     private let queue = DispatchQueue(label: "DBSerialiser")
 
-    private enum QueryType {
-        case simple
-        case insert
-        case fetch
-    }
-
     private let SQLITE_TRANSIENT = unsafeBitCast(-1, to:sqlite3_destructor_type.self)
 
     // MARK: Initialisation
