@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BEAA48102091C4F700314F42 /* NRSQLiteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAA480F2091C4F700314F42 /* NRSQLiteHelper.swift */; };
+		BEAA48112091C4F700314F42 /* NRSQLiteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAA480F2091C4F700314F42 /* NRSQLiteHelper.swift */; };
 		BEB5B64E2091C4000008F5EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB5B64D2091C4000008F5EE /* AppDelegate.swift */; };
 		BEB5B6502091C4000008F5EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB5B64F2091C4000008F5EE /* ViewController.swift */; };
 		BEB5B6532091C4000008F5EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEB5B6512091C4000008F5EE /* Main.storyboard */; };
@@ -26,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BEAA480F2091C4F700314F42 /* NRSQLiteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NRSQLiteHelper.swift; sourceTree = "<group>"; };
 		BEB5B64A2091C4000008F5EE /* NRSQLiteHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NRSQLiteHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB5B64D2091C4000008F5EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEB5B64F2091C4000008F5EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +80,7 @@
 		BEB5B64C2091C4000008F5EE /* NRSQLiteHelper */ = {
 			isa = PBXGroup;
 			children = (
+				BEB5B66E2091C4350008F5EE /* Source */,
 				BEB5B64D2091C4000008F5EE /* AppDelegate.swift */,
 				BEB5B64F2091C4000008F5EE /* ViewController.swift */,
 				BEB5B6512091C4000008F5EE /* Main.storyboard */,
@@ -94,6 +98,14 @@
 				BEB5B6642091C4020008F5EE /* Info.plist */,
 			);
 			path = NRSQLiteHelperTests;
+			sourceTree = "<group>";
+		};
+		BEB5B66E2091C4350008F5EE /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				BEAA480F2091C4F700314F42 /* NRSQLiteHelper.swift */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEAA48102091C4F700314F42 /* NRSQLiteHelper.swift in Sources */,
 				BEB5B6502091C4000008F5EE /* ViewController.swift in Sources */,
 				BEB5B64E2091C4000008F5EE /* AppDelegate.swift in Sources */,
 			);
@@ -206,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEAA48112091C4F700314F42 /* NRSQLiteHelper.swift in Sources */,
 				BEB5B6632091C4020008F5EE /* NRSQLiteHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

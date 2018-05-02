@@ -10,27 +10,71 @@ import XCTest
 @testable import NRSQLiteHelper
 
 class NRSQLiteHelperTests: XCTestCase {
-    
+
+    let kTableName = "TestTable"
+    let kTableColumnID = "ID"
+    let kTableColumnString = "String"
+    let kTableColumnInt = "Int"
+
+    var dbHelper:NRSQLiteHelper?
+
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        NRSQLiteHelper.destroy(dbFile: nil)
+        dbHelper = NRSQLiteHelper(dbFile: nil)
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testMain() {
+        //Create a table
+        XCTAssert(createTable())
+
+        let threadCount = 50
+        let writeExpectation = expectation(description: "Waiting for all writes")
+        var writeCount = 0
+
+        //Test insertion
+        for counter in 0..<threadCount {
+            DispatchQueue.global().async {
+                let query = """
+                INSERT INTO \(self.kTableName) \
+                (\(self.kTableColumnString), \(self.kTableColumnInt)) \
+                VALUES (?, ?)
+                """
+                XCTAssertNotNil(self.dbHelper?.executeInsertQuery(query: query, parameters: ["A String Value", counter]))
+                writeCount += 1
+                if writeCount == 50 {
+                    writeExpectation.fulfill()
+                }
+            }
+        }
+
+        wait(for: [writeExpectation], timeout: 5)
+
+        //Test fetching
+        let fetchQuery = """
+        SELECT * FROM \(kTableName)
+        """
+        if let rows = dbHelper?.executeFetchQuery(query: fetchQuery, parameters: nil) {
+            XCTAssert(rows.count == 50)
+        } else {
+            XCTAssert(false)
         }
     }
-    
+
+    //MARK: - Utilities
+
+    func createTable() -> Bool {
+        guard let dbHelper = dbHelper else {
+            return false
+        }
+
+        let createTableQuery = """
+        CREATE TABLE IF NOT EXISTS \(kTableName) \
+        (\(kTableColumnID) INTEGER PRIMARY KEY AUTOINCREMENT, \
+        \(kTableColumnString) TEXT, \
+        \(kTableColumnInt) INTEGER)
+        """
+
+        return dbHelper.executeQuery(query: createTableQuery, parameters: nil)
+    }
 }
